@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 
 class Locator:
     HEADER_LOGIN_AND_REGISTRATION = By.XPATH, ".//div[contains(@class,'header_')]/button[text()='Вход и регистрация']"
+    BUTTON_LOGIN = By.XPATH, "//button[text()='Войти']"
     POP_BUTTON_NO_ACCOUNT = By.XPATH, ".//div[contains(@class,'popUp_button')]//button[text()='Нет аккаунта']"
     POP_INPUTS = By.XPATH, ".//div[@class='popUp_inputColumn__RgD8n']//input"
     INPUT_EMAIL = By.NAME, "email"
