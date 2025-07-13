@@ -11,5 +11,6 @@ class Locator:
     POP_BUTTON_CREATE_ACCOUNT = By.XPATH,".//div[contains(@class , 'popUp_')]/button[text() = 'Создать аккаунт']"
     HEADER_AVATAR = By.CLASS_NAME, "svgSmall"
     COLUM_PROFILE_TEXT_NAME = By.XPATH, ".//h3[@class = 'profileText name']"
+    COLUM_PROFILE_EXIT = By.XPATH, "//button[@class = 'spanGlobal btnSmall']"
     ERROR_MESSAGE_REGISTRATION_NOT_VALUE_EMAIL = By.XPATH, ".//span[text() = 'Ошибка']"
     FRAME_INPUT_ERROR = By.XPATH, ".//div[@class='popUp_inputColumn__RgD8n']//div[@class='input_inputError__fLUP9']"
