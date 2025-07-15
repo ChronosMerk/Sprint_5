@@ -19,4 +19,5 @@ class TestLogout:
         user_avatar = driver.find_elements(*LC.HEADER_AVATAR)
         button_registration = driver.find_element(*LC.HEADER_LOGIN_AND_REGISTRATION).text
 
-        assert button_registration == 'Вход и регистрация' and len(user_avatar) == 0
+        assert button_registration == 'Вход и регистрация'
+        assert len(user_avatar) == 0

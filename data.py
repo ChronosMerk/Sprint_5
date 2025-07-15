@@ -1,6 +1,10 @@
+import os
+
+
 class URL:
     BASE = "https://qa-desk.stand.praktikum-services.ru/"
 
+
 class User:
-    EMAIL = "hbol@gmail.com"
-    PASSWORD = "hbol"
+    EMAIL = os.getenv("QA_EMAIL", "test@example.com")
+    PASSWORD = os.getenv("QA_PASSWORD", "password")

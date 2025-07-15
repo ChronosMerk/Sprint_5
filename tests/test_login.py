@@ -13,4 +13,5 @@ class TestLogin:
         driver.find_element(*LC.BUTTON_LOGIN).click()
 
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.COLUM_PROFILE_TEXT_NAME))
-        assert driver.find_element(*LC.COLUM_PROFILE_TEXT_NAME).text == 'User.' and driver.find_element(*LC.HEADER_AVATAR)
+        assert driver.find_element(*LC.COLUM_PROFILE_TEXT_NAME).text == 'User.'
+        assert driver.find_element(*LC.HEADER_AVATAR)

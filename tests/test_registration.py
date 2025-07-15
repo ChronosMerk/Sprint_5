@@ -51,7 +51,8 @@ class TestRegistration:
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.ERROR_MESSAGE_REGISTRATION_NOT_VALUE_EMAIL))
         message_error = driver.find_element(*LC.ERROR_MESSAGE_REGISTRATION_NOT_VALUE_EMAIL).text
         frame_error = driver.find_elements(*LC.FRAME_INPUT_ERROR)
-        assert len(frame_error) == 3 and message_error == 'Ошибка'
+        assert len(frame_error) == 3
+        assert message_error == 'Ошибка'
 
     def test_registration_with_existing_user_shows_error_and_highlights_fields(self, driver):
         driver.get(URL.BASE)
@@ -69,4 +70,5 @@ class TestRegistration:
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.ERROR_MESSAGE_REGISTRATION_NOT_VALUE_EMAIL))
         message_error = driver.find_element(*LC.ERROR_MESSAGE_REGISTRATION_NOT_VALUE_EMAIL).text
         frame_error = driver.find_elements(*LC.FRAME_INPUT_ERROR)
-        assert len(frame_error) == 3 and message_error == 'Ошибка'
+        assert len(frame_error) == 3
+        assert message_error == 'Ошибка'
