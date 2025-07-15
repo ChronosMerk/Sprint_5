@@ -58,8 +58,6 @@ class TestCreateAd:
         WebDriverWait(driver, 5).until(expected_conditions.element_to_be_clickable(LC.CREATE_BUTTON_PUBLISH))
         driver.find_element(*LC.CREATE_BUTTON_PUBLISH).click()
 
-        created_entity = input_name, input_price, city_name
-
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.HOMEPAGE))
         WebDriverWait(driver, 5).until(expected_conditions.element_to_be_clickable(LC.HEADER_USER_AVATAR))
         driver.find_element(*LC.HEADER_USER_AVATAR).click()
@@ -84,4 +82,6 @@ class TestCreateAd:
         entity_city = WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.PROFILE_CARD_CITY)).text
         entity_price = WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.PROFILE_CARD_PRICE)).text.replace(' ', '').replace('₽', '')
 
-        assert created_entity == (entity_name, entity_price, entity_city)
+        assert input_name == entity_name
+        assert input_price == entity_price
+        assert city_name == entity_city
