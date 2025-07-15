@@ -1,11 +1,13 @@
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from locators import Locator as LC
+from data import User, URL
 import pytest
+
 
 class TestRegistration:
     def test_registration_valid_unique_credentials(self, driver, generate_random_password, generate_random_email):
-        driver.get('https://qa-desk.stand.praktikum-services.ru/')
+        driver.get(URL.BASE)
 
         driver.find_element(*LC.HEADER_LOGIN_AND_REGISTRATION).click()
         driver.find_element(*LC.POP_BUTTON_NO_ACCOUNT).click()
@@ -34,7 +36,7 @@ class TestRegistration:
     "name@domain,com",
 ])
     def test_registration_with_invalid_email_shows_error_and_highlights_fields(self, driver, generate_random_password, email):
-        driver.get('https://qa-desk.stand.praktikum-services.ru/')
+        driver.get(URL.BASE)
 
         driver.find_element(*LC.HEADER_LOGIN_AND_REGISTRATION).click()
         driver.find_element(*LC.POP_BUTTON_NO_ACCOUNT).click()
@@ -51,17 +53,17 @@ class TestRegistration:
         frame_error = driver.find_elements(*LC.FRAME_INPUT_ERROR)
         assert len(frame_error) == 3 and message_error == 'Ошибка'
 
-    def test_registration_with_existing_user_shows_error_and_highlights_fields(self, driver, authorized_user):
-        driver.get('https://qa-desk.stand.praktikum-services.ru/')
+    def test_registration_with_existing_user_shows_error_and_highlights_fields(self, driver):
+        driver.get(URL.BASE)
 
         driver.find_element(*LC.HEADER_LOGIN_AND_REGISTRATION).click()
         driver.find_element(*LC.POP_BUTTON_NO_ACCOUNT).click()
 
 
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.POP_INPUTS))
-        driver.find_element(*LC.INPUT_EMAIL).send_keys(authorized_user["email"])
-        driver.find_element(*LC.INPUT_PASSWORD).send_keys(authorized_user["password"])
-        driver.find_element(*LC.INPUT_SUBMIT_PASSWORD).send_keys(authorized_user["password"])
+        driver.find_element(*LC.INPUT_EMAIL).send_keys(User.EMAIL)
+        driver.find_element(*LC.INPUT_PASSWORD).send_keys(User.PASSWORD)
+        driver.find_element(*LC.INPUT_SUBMIT_PASSWORD).send_keys(User.PASSWORD)
         driver.find_element(*LC.POP_BUTTON_CREATE_ACCOUNT).click()
 
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.ERROR_MESSAGE_REGISTRATION_NOT_VALUE_EMAIL))
