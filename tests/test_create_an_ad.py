@@ -14,14 +14,12 @@ class TestCreateAd:
         modal_windows = driver.find_element(*LC.MODAL_WINDOW_AD_CREATE_NOT_AUTHORIZED_USER).text
         assert modal_windows  == 'Чтобы разместить объявление, авторизуйтесь'
 
-    def test_authenticated_user_can_create_listing_and_see_it_in_profile(self, driver):
+    def test_authenticated_user_can_create_listing_and_see_it_in_profile(self, driver, authorized_user):
         driver.get('https://qa-desk.stand.praktikum-services.ru/')
-        email = 'hbol@gmail.com'
-        password = 'hbol'
 
         driver.find_element(*LC.HEADER_LOGIN_AND_REGISTRATION).click()
-        driver.find_element(*LC.INPUT_EMAIL).send_keys(email)
-        driver.find_element(*LC.INPUT_PASSWORD).send_keys(password)
+        driver.find_element(*LC.INPUT_EMAIL).send_keys(authorized_user["email"])
+        driver.find_element(*LC.INPUT_PASSWORD).send_keys(authorized_user["password"])
         driver.find_element(*LC.BUTTON_LOGIN).click()
 
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.COLUM_PROFILE_TEXT_NAME))

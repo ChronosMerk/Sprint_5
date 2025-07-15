@@ -51,19 +51,17 @@ class TestRegistration:
         frame_error = driver.find_elements(*LC.FRAME_INPUT_ERROR)
         assert len(frame_error) == 3 and message_error == 'Ошибка'
 
-    def test_registration_with_existing_user_shows_error_and_highlights_fields(self, driver):
+    def test_registration_with_existing_user_shows_error_and_highlights_fields(self, driver, authorized_user):
         driver.get('https://qa-desk.stand.praktikum-services.ru/')
-        email = 'hbol@gmail.com'
-        password = 'hbol'
 
         driver.find_element(*LC.HEADER_LOGIN_AND_REGISTRATION).click()
         driver.find_element(*LC.POP_BUTTON_NO_ACCOUNT).click()
 
 
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.POP_INPUTS))
-        driver.find_element(*LC.INPUT_EMAIL).send_keys(email)
-        driver.find_element(*LC.INPUT_PASSWORD).send_keys(password)
-        driver.find_element(*LC.INPUT_SUBMIT_PASSWORD).send_keys(password)
+        driver.find_element(*LC.INPUT_EMAIL).send_keys(authorized_user["email"])
+        driver.find_element(*LC.INPUT_PASSWORD).send_keys(authorized_user["password"])
+        driver.find_element(*LC.INPUT_SUBMIT_PASSWORD).send_keys(authorized_user["password"])
         driver.find_element(*LC.POP_BUTTON_CREATE_ACCOUNT).click()
 
         WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.ERROR_MESSAGE_REGISTRATION_NOT_VALUE_EMAIL))

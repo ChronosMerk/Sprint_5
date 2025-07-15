@@ -21,3 +21,11 @@ def generate_random_password(length=12):
     characters = string.ascii_letters + string.digits + string.punctuation
     password = ''.join(random.choices(characters, k=length))
     return password
+
+@pytest.fixture
+def authorized_user():
+    user = {
+        "email": "hbol@gmail.com",
+        "password": "hbol"
+    }
+    return user
