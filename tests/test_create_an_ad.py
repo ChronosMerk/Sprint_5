@@ -76,20 +76,11 @@ class TestCreateAd:
 
             not_last_page = len(driver.find_elements(*LC.PROFILE_CARD_BUTTON_NEXT_ACTIVE)) > 0
 
-
         WebDriverWait(driver, 5).until(expected_conditions.presence_of_element_located(LC.PROFILE_CARD_DESCRIPTION_LAST))
+        WebDriverWait(driver, 5).until(expected_conditions.text_to_be_present_in_element(LC.PROFILE_CARD_NAME, input_name))
+
         entity_name = WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.PROFILE_CARD_NAME)).text
         entity_city = WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.PROFILE_CARD_CITY)).text
         entity_price = WebDriverWait(driver, 5).until(expected_conditions.visibility_of_element_located(LC.PROFILE_CARD_PRICE)).text.replace(' ', '').replace('₽', '')
 
-
-        WebDriverWait(driver, 10).until(expected_conditions.text_to_be_present_in_element(LC.PROFILE_CARD_NAME, input_name))
         assert created_entity == (entity_name, entity_price, entity_city)
-
-
-
-
-
-
-
-
